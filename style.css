@@ -10,18 +10,17 @@ body{
 }
 
 ul#navbar {
-  font-family: "linux biolinum o", "linux libertine", "times new roman", "liberation serif", serif;
-  font-size: 1.2em;
-  letter-spacing: 1px;
+  font-family: 'Georgia', sans-serif;
+  font-size: 18em;
   text-transform: uppercase;
   text-align: center;
-  margin: 0;
+  margin: 0.5em;
   padding-bottom: 0.5em;
-  border-bottom: 2px solid #9ea191;
+  border-bottom: 2px solid #444;
 }
 
 ul#navbar li {
-  color: #5d695d;
+  color: #666;
   display: inline;
   margin: 0 0.2em;
 }
