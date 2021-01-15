@@ -8,6 +8,9 @@ body{
     font-size: 18px;
     padding: 0;
 }
+::selection {
+	background-color: #fff888;
+}
 
 ul#navbar {
   font-family: 'Georgia', sans-serif;
