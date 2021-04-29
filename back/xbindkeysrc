@@ -1,0 +1,30 @@
+"amixer -q -D pulse sset Master toggle"
+m:0x0 + c:121
+	XF86AudioMute
+#Sets volume up
+"amixer set Master 5%+"
+ m:0x0 + c:123
+    XF86AudioRaiseVolume
+#Sets volume down
+"amixer set Master 5%-" 
+ m:0x0 + c:122
+    XF86AudioLowerVolume
+
+#Pause/play song
+"dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+    XF86AudioPlay
+#Play next song
+"cmus-remote --next"
+ m:0x0 + c:171
+    XF86AudioNext   
+#Play previous song
+"cmus-remote --prev"
+m:0x0 + c:173
+    XF86AudioPrev 
+
+#Mutes mic
+"amixer set Capture toggle"
+    m:0x0 + c:198
+    XF86AudioMicMute
+
+# slock
