@@ -1,0 +1,14 @@
+CO23: 21/12/20
+Zella Baig
+
+The derivation of the KdV equation appears to be a standard Y1 mathematics problem, resolved by treating partial derivatives as operators. This is done readily enough employing the chain rule, and can be done successively to attain the final required form as given in the script (up to the third derivative). 
+
+The discussion about finite difference formulae in the script is not very clear; I have had to spend a fair amount of time reading around it but nothing unreasonable. The logic behind the numerical substitutions of the derivates seems to make sense; as we are considering snapshots in time and space it appears that working in multi-dimensional arrays is best.
+
+One issue which immediately cropped up was checking to see if delta was 0; if so an arbitrary value is assigned corrsponding to delta=0.03. 
+
+Initially, all the calculations were performed in a single script but it appears to be better organised if I first define the parameters needed, such as the t=0 snapshot, and then feed them to a second function which actually performs the finite difference method. This script needs to work in mod(N); given the way matlab arrays start at 1 this required some time to process. This is then used to create the timestamps for t, t-dt, and t+dt. Cycling through these is done quite simply with a for loop, and then fed back to the original function and subsequently animated using the pause function.
+
+The function outputs erratic behaviour as expected as delta increases, or indeed as the time differences get larger.
+
+The time to actually run the script is quite reasonable, found by using built-in 'tic/toc' function. However, this increases drastically when the timestamps were shortened. This is expected of course, as more calculations needed to be performed, and still does not present much of an issue given the script takes a few seconds to run. Nevertheless it is worth bearing in mind.
