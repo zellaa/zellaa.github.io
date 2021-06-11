@@ -1,6 +1,0 @@
-CO32: 12/2/21
-Zella Baig
-
-The first issue encountered was dealing with the imaginary and real parts seperately; in fact I did not think to do so initially and was had initially attempted to seperate them after performing the fourier transform. 
-
-Another issue encountered was shifting the array such that the 'centre' of the function is at cell number 250 - though this was done easily enough. This did present some initial confusion as I was concerned about the shape of the plot - as it was not at all what I expected.

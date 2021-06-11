@@ -1,4 +1,0 @@
-export PATH=/home/stephen/.scripts:/home/stephen/.gem/ruby/2.7.0/bin:$PATH
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-	exec startx
-fi

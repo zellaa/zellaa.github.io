@@ -1,9 +1,0 @@
-CO24: 30/12/20
-Zella Baig
-
-It seems the best way to approach this task is to generate the initial array based upon the number of intervals as defined by the user, and then run the RK4 method using said parameters. The RK4 method is quite straightforward to implement, as it simply requires a loop over each timestep, using the preceding values to generate the values fpr the next timestep.
-
-The equations governing the chaotic behaviour can be coded manually, but given the discussion in the script about extending this function, I believe it would be better to define anonymous functions as to be able to pass these functions to a dedicated RK4 script. This latter script I have denoted odsolver, which takes in time, y values, and also the differential equations which govern the system at hand. This has been easy to implement because while the RK4 method is relatively long, it is simple, conceptually, as it just requires iteration over the 3 variables independantly. 
-
-From here it is quite easy to just plot whichever values we desire against each other, as we have an array containing all needed values. 
-The changing of initial conditions is as expected; there is great sensitivity in the plots to the values input due to the chaotic nature of the lorenz equations.
