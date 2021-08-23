@@ -1,0 +1,38 @@
+\documentclass{article}
+\pagenumbering{gobble}
+\usepackage[a4paper,left=5mm,right=5mm,top=10mm,bottom=7mm]{geometry}  
+\usepackage{tikz}
+\usepackage{pagecolor}
+\definecolor{background}{HTML}{FFFFFF}
+\definecolor{dots}{HTML}{888888}
+\definecolor{linecol}{HTML}{202020}
+\pagecolor{background}
+\usepackage{eso-pic}
+\usetikzlibrary{shapes,calc,positioning,arrows}
+\begin{document}
+\begin{tikzpicture}[scale=0.5]
+    \foreach \x in {0,...,38}
+    \foreach \y in {1,...,56}
+    {
+		\fill[dots] (\x,\y) circle (0.4mm);
+    }       
+  \end{tikzpicture}
+
+%\AddToShipoutPictureFG*{%
+%\AtPageLowerLeft{%
+%\hspace*{10mm}%
+%\rule{1pt}{\paperheight}%
+%}%
+%\AtPageLowerLeft{%
+%\hspace*{200mm}%
+%\rule{1pt}{\paperheight}%
+%}%
+%}
+
+\begin{tikzpicture}[remember picture,overlay]
+	\draw[linecol,dash pattern=on 10pt off 0pt,line width=0.5pt]($(current page.north west)+(0.5cm,-1cm)$)--($(current page.south west)+(0.5cm,5.25mm)$);
+	\draw[linecol,dash pattern=on 10pt off 0pt,line width=0.5pt]($(current page.north east)+(-0.5cm,-1cm)$)--($(current page.south east)+(-0.5cm,5.25mm)$);
+	\draw[line width=2pt,linecol,,dash pattern=on 10pt off 0pt]($(current page.north west)+(0.5cm,-10.25mm)$)--($(current page.north east)+(-0.5cm,-10.25mm)$);
+	\draw[line width=0.5pt,linecol,,dash pattern=on 10pt off 0pt]($(current page.south west)+(0.5cm,+5.25mm)$)--($(current page.south east)+(-0.5cm,+5.25mm)$);
+\end{tikzpicture}
+\end{document}
