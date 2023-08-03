@@ -36,3 +36,9 @@ ul#navbar li a {
   text-decoration: none;
   color: inherit;
 }
+a:visited {
+  color: #da6f21;
+}
+a:link {
+  color: #524c0f;
+}
