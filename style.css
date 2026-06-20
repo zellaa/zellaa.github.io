@@ -1,13 +1,25 @@
-body{
-	font-family: 'Georgia', 'Arial', sans-serif;
+body {
+    font-family: 'Georgia', 'Arial', sans-serif;
     color: #444;
     background-color: #EEE;
     margin: 1em auto;
     max-width: 48em;
     line-height: 1.6em;
     font-size: 18px;
-    padding: 0;
+    padding: 0 1.25em;
+    box-sizing: border-box;
 }
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/* Ensure images don't overflow on small screens */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 ::selection {
 	background-color: #fff888;
 }
@@ -24,8 +36,8 @@ ul#navbar {
 
 ul#navbar li {
   color: #666;
-  display: inline;
-  margin: 0 0.2em;
+  display: inline-block;
+  margin: 0.25em 0.8em;
 }
 
 ul#navbar li:hover {
@@ -36,9 +48,46 @@ ul#navbar li a {
   text-decoration: none;
   color: inherit;
 }
+
 a:visited {
   color: #da6f21;
 }
+
 a:link {
   color: #524c0f;
+}
+
+ol.writing-list {
+  list-style-type: none;
+  padding: 1rem 0;
+}
+
+ol.writing-list li {
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+
+ol.writing-list time {
+  float: right;
+  color: #888;
+  font-style: italic;
+}
+
+/* Responsive adjustment for small viewports */
+@media (max-width: 600px) {
+  body {
+    font-size: 16px;
+    padding: 0 1em;
+  }
+  
+  ul#navbar {
+    font-size: 1em;
+  }
+  
+  ol.writing-list time {
+    display: block;
+    float: none;
+    text-align: left;
+    margin-top: 0.25em;
+  }
 }
