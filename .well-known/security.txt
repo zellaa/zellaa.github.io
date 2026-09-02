@@ -1,0 +1,5 @@
+Contact: mailto:zellbaig@gmail.com
+Encryption: https://sulch.dev/publickey.asc
+Preferred-Languages: en
+Canonical: https://sulch.dev/.well-known/security.txt
+Expires: 2027-09-02T00:00:00.000Z
