@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
+  <meta charset="UTF-8">
   <title>Writing</title>
   <meta name="viewport" content="width=device-width">
   <link rel=icon href=data:,>
@@ -25,12 +26,21 @@
 </nav>
 <main>
   <header>
-	  <h2><img src="./assets/written.gif"></h2>
-    <p>Split into <a href="#Reports">reports</a>, <a href="#Presentations">presentations</a>, and <a href="#Misc">other things</a>. Note that dates listed are dates of upload, not completion, as most of this is put up weeks/months later.</p>
+	  <h2><img src="./assets/written.gif" alt="Writing"></h2>
+    <p>Split into <a href="#Blogposts">blogposts</a>, <a href="#Reports">academic</a>, <a href="#Presentations">talks</a>, and <a href="#Misc">misc</a>. Note that dates listed are dates of upload, not completion, as most of this is put up weeks/months later.</p>
 	<p>Fair warning that some of the older academic stuff isn't great - check out the image colourisation report for an idea of what I am happy with.</p>
   </header>
   <header>
-	  <h3><a id="Reports"><img src="./assets/reports.gif"></a></h3>
+    <h3 id="Blogposts">Blogposts</h3>
+  </header>
+  <nav>
+    <ol class="writing-list">
+      <li><a href="./blogs/pi.html">Building a home HTTPS gateway with a Raspberry Pi and Envoy</a> - Stable hostnames, HTTPS, and GitOps for applications on my home network.<time datetime="2026-11-19">nov 19, 2026</time></li>
+    </ol>
+  </nav>
+
+  <header>
+	  <h3 id="Reports">Academic</h3>
 	</header>
   <nav>
     <ol class="writing-list">
@@ -46,7 +56,7 @@
   </nav>
 
   <header>
-	  <h3><a id="Presentations"><img src="./assets/pres.gif"></a></h3>
+	  <h3 id="Presentations">Talks</h3>
 	</header>
   <nav>
     <ol class="writing-list">
@@ -58,7 +68,7 @@
   </nav>
 
   <header>
-	  <h3><a id="Misc"><img src="./assets/misc.gif"></a></h3>
+	  <h3 id="Misc">Misc</h3>
 	</header>
   <nav>
     <ol class="writing-list">

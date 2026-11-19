@@ -73,6 +73,31 @@ ol.writing-list time {
   font-style: italic;
 }
 
+.blog-post h1 {
+  line-height: 1.2;
+}
+
+.blog-post h2 {
+  margin-top: 1.5em;
+  line-height: 1.3;
+}
+
+.blog-post p,
+.blog-post li {
+  overflow-wrap: anywhere;
+}
+
+.blog-post code {
+  font-size: 0.9em;
+}
+
+.blog-post pre {
+  overflow-x: auto;
+  padding: 1em;
+  background-color: #e2e2e2;
+  line-height: 1.4;
+}
+
 /* Responsive adjustment for small viewports */
 @media (max-width: 600px) {
   body {

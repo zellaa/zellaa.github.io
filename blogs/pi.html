@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="Stable hostnames, HTTPS, and GitOps for home applications using a Raspberry Pi, Envoy, Route 53, and Let's Encrypt.">
+  <title>Building a home HTTPS gateway with a Raspberry Pi and Envoy</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<nav>
+  <ul id="navbar">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../cv.pdf">CV</a></li>
+    <li><a href="https://github.com/zellaa">Github</a></li>
+    <li><a href="../writing.html">Writing</a></li>
+  </ul>
+</nav>
+<main>
+  <p><a href="../writing.html#Blogposts">Back to blogposts</a></p>
+  <article class="blog-post">
+<h1>Building a home HTTPS gateway with a Raspberry Pi and Envoy</h1>
+
+<p>I wanted a nice way to reach applications on my home network using stable domain names and HTTPS, even when moving them between machines. Instead of remembering IP addresses and ports, my end goal was to just hit <code>app.home.sulch.dev</code> and have things "just work".</p>
+
+<p>My solution: a Raspberry Pi 5 running Envoy as a gateway, Route 53 pointing application names at the Pi, and certs from Let's Encrypt handling HTTPS. Routes for my apps live in a small repo, so after each push, everything's reconciled automatically via a GitOps flow.</p>
+
+<h2>The Pi</h2>
+
+<p>The devices within my network have static addresses on the LAN. All the hostnames for the applications I set up resolve to the Pi, which then forwards each request to the relevant backend. This is a simple diagram of what goes on when I hit <code>https://grafana.home.sulch.dev</code> from a device at home:</p>
+
+<pre><code class="language-text">Client
+   |
+   | https://grafana.home.sulch.dev
+   v
+Raspberry Pi:443
+    Envoy
+      |
+      | HTTP
+      v
+127.0.0.1:3000
+   Grafana
+</code></pre>
+
+<p>Something running on my PC, for example, would follow a similar path, except for the last hop, which would be from the Pi to the PC's reserved address and port.</p>
+
+<p>This setup is nice because apps within my network get stable hostnames regardless of where they're running, even if I move app X from laptop 1 to laptop 2. The hostnames don't need to refer to the host machine either, so I don't need to hit <code>grafana.pi.home.sulch.dev</code> or something.</p>
+
+<h2>The config setup</h2>
+
+<p>There are two different workflows at play here: bootstrapping the host and publishing applications. Setting up the Pi needs access to the host and its credentials, whereas publishing an app only needs definitions for what's running where. So there are two repos at play.</p>
+
+<p>The first is my Terraform/Ansible repo. This contains my wider AWS setup as well as the Ansible playbooks for setting up the Pi host. The second is a small repo that contains the application routes and device addresses. A push to this second repo triggers the reconciler, which I set up via the first repo's playbooks. An added benefit here is that other users on my network can just clone the second repo and deploy their own apps without needing access to the Pi itself.</p>
+
+<h2>Public DNS &amp; private addresses</h2>
+
+<p>My Route 53 setup contains a few different records:</p>
+
+<pre><code class="language-text">pi.sulch.dev          -&gt; 192.168.4.35  # pi static IP
+*.home.sulch.dev      -&gt; 192.168.4.35  # wildcard routed to the pi
+mac.sulch.dev         -&gt; 192.168.4.36
+pc.sulch.dev          -&gt; 192.168.4.37
+&lt;other devices &gt;
+</code></pre>
+
+<p>The wildcard is just an ordinary record in a public hosted zone that resolves to the Pi's private LAN address. A client outside my network can resolve the name too, but since it points to a private address, the client's connection attempt follows its own network's routing to that address.</p>
+
+<p>A small note here is that I haven't switched my house's DNS resolution entirely onto the Pi (e.g. with Pi-hole), to avoid making it a single point of failure (SPOF) for DNS. It's fine if my personal apps are down for a while; it's not if I suddenly can't google how to fix why they broke.</p>
+
+<h2>Cert management</h2>
+
+<p>I provision a single wildcard cert via Let's Encrypt for <code>*.home.sulch.dev</code> so that I can spin up whatever random subdomains I want. The idea is to keep cert management decoupled from setting up new subdomains later.</p>
+
+<p>Since it's a wildcard domain, I used a DNS-01 challenge from Let's Encrypt to get issuance sorted. An added benefit is that I don't need to deal with any TCP forwarding or whatnot. The only issue with this setup is that, because I manage DNS via AWS, I needed to configure AWS permissions and load credentials onto the Pi so it could do the whole issuance dance. Namely, it needed permission to update TXT records at the subdomain Let's Encrypt wants.</p>
+
+<p>Next, as part of the Ansible bootstrap, I set up some systemd services that run daily checks on cert expiry, with retries in case the Pi has been offline for an extended period. Before any cert is published to the reverse proxy, I run some sanity checks: the cert chain, wildcard name, remaining validity, and whether the cert matches its associated private key.</p>
+
+<h2>Reverse proxy configuration</h2>
+
+<p>I'm using Envoy as the proxy for my setup. There are a couple of different reasons for this:</p>
+
+<ul>
+
+  <li>The main one is just that I wanted to use stuff I was more comfortable with. I work a lot with Kubernetes and such, and despite being fairly comfortable with the likes of Traefik and NGINX, I've used Istio, HAProxy, and Envoy more in anger.</li>
+
+  <li>gRPC gives me room to flesh this out later. For future routes over gRPC, Envoy's gRPC-JSON transcoder lets me set up a simple HTTP/JSON interface I can call with curl.</li>
+
+</ul>
+
+<p>The backend relies fairly heavily on Envoy's filesystem-based xDS config for the clusters, routes, and certs. This is nice (and probably overkill) since I can now hot-reload my setup when the config changes, for example, if I need to add a new app.</p>
+
+<p>This setup also has a secondary benefit: route management is isolated from the initial service setup, so other users on the network can publish apps and the like fairly simply.</p>
+
+<h2>Updating apps on the network</h2>
+
+<p>The route repository has one relatively static file, which is just a map of devices to their addresses:</p>
+
+<pre><code class="language-yaml">pi: 127.0.0.1
+mac: 192.168.4.36
+&lt;other device: address mappings here&gt;
+</code></pre>
+
+<p>There's then another set of files that define the different routes. For example, I have a <code>monitoring.yaml</code> that contains:</p>
+
+<pre><code class="language-yaml">routes:
+  - hostname: grafana.home.sulch.dev
+    target: pi
+    port: 3000
+</code></pre>
+
+<p>This just says, "Forward requests to Grafana to the Pi at port 3000."</p>
+
+<p>If I move something to a new computer in the future, all I need to do is edit two lines at most: add the host (if it's not already present) and update the target definition. After a push, everything should be live in a few minutes.</p>
+
+<p>The schema's intentionally simple since, at present, there's nothing fancy that needs to be done under the hood. The Ansible bootstrap sets up a resolver that renders the YAML files into their respective Envoy-compatible config files when the route config repo is updated. The resolver also does some preflight checks, such as deduping and schema validation.</p>
+
+<h2>The GitOps flow</h2>
+
+<p>The Pi runs a service that uses a read-only key to poll the GitHub repo for changes to pull down. A second job runs the reconciliation loop.</p>
+
+<p>The reconciler:</p>
+
+<ol>
+
+  <li>Reads a specific Git revision and validates the YAML config.</li>
+
+  <li>Compiles the YAML into Envoy config.</li>
+
+  <li>Starts an isolated Envoy process to validate that the config works.</li>
+
+  <li>Publishes the clusters and routes, then cleans up unused clusters.</li>
+
+  <li>Runs a post-flight validation step to check that the primary Envoy service has picked up the new config.</li>
+
+</ol>
+
+<p>To go over this with a concrete example, let's say I move Grafana from one host to another. The reconciler first publishes a configuration containing both backends. It then publishes the updated routes and only afterwards removes the unused cluster. During each step, it checks Envoy's active configuration to see what's been loaded and accepted so it can fail fast.</p>
+
+<p>The isolated Envoy process described above checks that the generated config can be loaded before it's published. These checks don't necessarily prove that a given service is healthy, just that the configuration could, in theory, serve healthy traffic.</p>
+
+<p>Because the routes are published separately, I keep a record of the previous working config and the deployment in progress. If a failure occurs whilst publication is in progress, the reconciler attempts to restore the last good configuration. If that also fails, the failure is recorded so that the next run can at least retry.</p>
+
+<p>That leaves three distinct revisions to track: the latest fetched from Git, the one being deployed, and the last one Envoy successfully accepted.</p>
+
+<h2>Some tidbits in the Ansible setup</h2>
+
+<p>I create separate accounts within the Ansible bootstrap to fetch the Git repo, reconcile the config and publish routes, and manage certs. Each of these tasks runs under a different user since, for example, the route reconciler doesn't need the AWS credentials used to manage the certs.</p>
+
+<p>Another tidbit from setting up the host: before configuring the firewall rules, I set up a systemd service with a five-minute timer that restores the firewall state from before the playbooks made any changes. When I lock the firewalls down, I open a fresh SSH connection. On success, I delete the rollback service; otherwise, the timer restores the previous state, so I don't need to fiddle around with logging on manually, since I don't have the Pi connected to a screen.</p>
+
+<h2>o11y</h2>
+
+<p>I run a small o11y stack on the Pi as well:</p>
+
+<ul>
+
+  <li>Grafana as the visualisation layer.</li>
+
+  <li>VictoriaMetrics for collection and storage.</li>
+
+  <li>Node Exporter for the Pi itself.</li>
+
+  <li>Blackbox Exporter for every app.</li>
+
+  <li>A small status service monitoring my Envoy config rollouts (this hooks into the reconciler service described above).</li>
+
+</ul>
+
+<p>VictoriaMetrics is the only really "interesting" choice here. I chose it for three main reasons:</p>
+
+<ul>
+
+  <li>It's lower on resource usage, such as RAM.</li>
+
+  <li>Its storage design lets me trade how frequently buffered samples are flushed to disk against writes to the Pi's storage medium.</li>
+
+  <li>I'm also just a very big fan of the project and use it heavily, since it's a lot cleaner to set up in an HA configuration.</li>
+
+</ul>
+
+<h2>Closing remarks</h2>
+
+<p>This was a fun little weekend project to set up, and what's nice is that it's fairly extensible as I get more things running. Right now, my biggest bottleneck is the hardware on the Pi itself, since I have to bear the memory constraints in mind when choosing what I want running 24/7.</p>
+
+<p>The primary drawback is that the Pi remains the SPOF for gateway requests, but it's not the end of the world if it goes down. The next big thing I want to set up is some sort of workload identity system, hooking into Envoy, to let my apps talk to one another.</p>
+  </article>
+</main>
+</body>
+</html>
