@@ -108,7 +108,17 @@ def render(source, output, pdf_output):
         match = re.search(r"\\" + key + r"\b", document[1])
         if not match:
             raise ValueError(f"Missing \\{key}")
-        fields[key] = inline(argument(document[1], match.end())[0])
+        value = argument(document[1], match.end())[0]
+        if key == "address":
+            links = []
+            for contact in re.finditer(r"\\href\b", value):
+                target, end = argument(value, contact.end())
+                _, end = argument(value, end)
+                if urlsplit(target).scheme in ("https", "http"):
+                    links.append(inline(value[contact.start():end]))
+            fields[key] = " · ".join(links)
+        else:
+            fields[key] = inline(value)
     site = Path(__file__).resolve().parents[1]
     url = lambda path: quote(Path(relpath(path.resolve(), output.resolve().parent)).as_posix())
     name = re.sub(r"<[^>]+>", "", fields["name"])
