@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Curriculum vitae — $meta_name">
+  <title>CV — $page_name</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="$stylesheet?v=6">
+</head>
+<body class="cobalt cv-page">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="cobalt-sheet">
+    <header class="cobalt-top">
+      <a class="micro" href="$home">zella’s page</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="$writing">Writing</a>
+        <a href="$cv" aria-current="page">CV</a>
+        <a href="https://github.com/zellaa">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <header class="cv-heading">
+        <div>
+          <p class="eyebrow">Curriculum vitae</p>
+          <h1>$name</h1>
+          <p class="cv-contact">$address</p>
+        </div>
+        <a class="pdf-download" href="$pdf" download>Download PDF <span aria-hidden="true">↓</span></a>
+      </header>
+
+      <div class="paper cv-content">
+$sections
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <a href="$public_key">GPG / 7B77AE91FD477FE9 ↗</a>
+      <a href="$home">zella.</a>
+    </footer>
+  </div>
+</body>
+</html>

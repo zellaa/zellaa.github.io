@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Curriculum vitae — Zella Baig">
+  <title>CV — Zella Baig</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="cobalt.css?v=6">
+</head>
+<body class="cobalt cv-page">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="cobalt-sheet">
+    <header class="cobalt-top">
+      <a class="micro" href="index.html">zella’s page</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="writing.html">Writing</a>
+        <a href="cv.html" aria-current="page">CV</a>
+        <a href="https://github.com/zellaa">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <header class="cv-heading">
+        <div>
+          <p class="eyebrow">Curriculum vitae</p>
+          <h1>Zella Baig</h1>
+          <p class="cv-contact">zellbaig@gmail.com · 07860 208 585 · <a href="https://sulch.dev">sulch.dev</a> · <a href="https://www.linkedin.com/in/zella-baig/">linkedin.com/in/zella-baig</a></p>
+        </div>
+        <a class="pdf-download" href="cv.pdf" download>Download PDF <span aria-hidden="true">↓</span></a>
+      </header>
+
+      <div class="paper cv-content">
+        <section class="cv-section" aria-labelledby="cv-section-1">
+          <h2 id="cv-section-1">Experience</h2>
+          <div class="cv-section-content">
+            <article class="cv-entry">
+              <header class="cv-entry-heading">
+                <h3>Qube Research &amp; Technologies (Quantitative Technologist)</h3>
+                <p class="cv-date">May 2025 - Present</p>
+              </header>
+              <ul class="cv-bullets">
+                <li><em>Public description kept intentionally redacted</em></li>
+              </ul>
+            </article>
+            <article class="cv-entry">
+              <header class="cv-entry-heading">
+                <h3>SGX FX (DevOps Engineer)</h3>
+                <p class="cv-date">Sep 2023 - May 2025</p>
+              </header>
+              <ul class="cv-bullets">
+                <li>Developed a pipeline to parse NLP notebooks into FastAPI-based Python containerised applications used internally via API to parse FX trade rejections, incorporating cross-region networking, load scaling, tracing, performance testing, and automated NLP testing &amp; model generation</li>
+                <li>Developed framework using Terraform &amp; GCP to automate SSL rotations internally</li>
+                <li>Introduced various tools and scripts to aide developers (e.g. KEDA-based autoscaling, new Helm charts for Redis-equipped applications), as well as provided general day-to-day support for DevOps related tasks</li>
+                <li>Maintained &amp; developed CI/CD pipelines using TeamCity, FluxCD, and other tools</li>
+                <li>Introduced &amp; maintained custom Terraform modules/forks</li>
+                <li>Collaborated with the internal Data Team to provide an administrative database collecting users &amp; FX subscriptions for a new application, and provided various endpoints and custom internal tools for management</li>
+                <li>Implemented an full monitoring stack utilising tools such as Prometheus, Thanos, VictoriaMetrics, &amp; Vector on Talos as part of a shift towards onprem kubernetes</li>
+                <li>Aided in developing &amp; end-to-end testing a brand new on-prem Java based applications used for data monitoring, including the initial configuration and developer pipeline setup</li>
+                <li>Developed various ansible scripts such as automating maintenance and deployment of hardware management using node_exporter, and implemented developer alerting for these scripts via GCP kubernetes-based solutions</li>
+                <li>Supported general development of various internal tools used by developers to generate isolated “miniaturised” software stacks to test breaking changes</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+        <section class="cv-section" aria-labelledby="cv-section-2">
+          <h2 id="cv-section-2">Skills</h2>
+          <div class="cv-section-content">
+              <ul class="cv-bullets">
+                <li>CI/CD using Bamboo, Gitlab CI, Github Actions, FluxCD, TeamCity, Terraform</li>
+                <li>Orchestration with Kubernetes, Docker, Helm</li>
+                <li>Monitoring using VictoriaMetrics, Prometheus, Grafana</li>
+                <li>Cloud: <strong>AWS</strong> (e.g. ECS, EKS, EC2, VPC); <strong>GCP</strong> (e.g. Cloud Run, Kubernetes Engine, Pub/Sub, Cloudfunctions)</li>
+                <li>Automation scripting using Ansible, Shellscript, Python for e.g. streamlining developer workflows</li>
+                <li>Java in enterprise high-throughput FX processing software, with testing using Cucumber, JUnit, AssertJ, Selenium</li>
+              </ul>
+          </div>
+        </section>
+        <section class="cv-section" aria-labelledby="cv-section-3">
+          <h2 id="cv-section-3">Education</h2>
+          <div class="cv-section-content">
+            <article class="cv-entry">
+              <header class="cv-entry-heading">
+                <h3>University of Oxford, Mansfield College - MSc Mathematical Modelling &amp; Scientific Computing</h3>
+                <p class="cv-date">2023</p>
+              </header>
+              <ul class="cv-bullets">
+                <li><em>Dissertation: Singular Spectrum Analysis for Time Series</em>, working with BlackRock</li>
+                <li><em>Projects:</em> <strong><code>series_scorer</code></strong>: a Python package to denoise (via SSA) and cross-score similarity for multiple time series; <strong>Adaptive Optimisation Algorithms</strong>: analysis of recent ML algorithms with an application in house pricing; <strong>Computational Call Pricing</strong>: examining a neural-network based call pricing algorithm</li>
+                <li><strong>Image Recolourisation</strong>: python GUI program to recolourise images using RKHS methods for the backend; <strong>Battery Modelling</strong>: construction of a model to analyse battery degradation for electric vehicles</li>
+              </ul>
+            </article>
+            <article class="cv-entry">
+              <header class="cv-entry-heading">
+                <h3>University of Oxford, St. Hilda&#x27;s College - BA Physics (2.i)</h3>
+                <p class="cv-date">2019 - 2022</p>
+              </header>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <a href="publickey.asc">GPG / 7B77AE91FD477FE9 ↗</a>
+      <a href="index.html">zella.</a>
+    </footer>
+  </div>
+</body>
+</html>
