@@ -1,52 +1,113 @@
-<html>
-<title>zella's page</title>
-
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width">
-<link rel ="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="zella’s personal site">
+  <title>zella’s page</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="cobalt.css?v=4">
 </head>
+<body class="cobalt">
+  <a class="skip" href="#main">Skip to content</a>
 
-<body>
-<nav>
-	<ul id="navbar">
-		<li><a href="index.html">Home</a></li>
-		<!--<li><a href="linux.html">Linux</a></li>-->
-		<li> <a href="cv.pdf">CV</a> </li>
-		<li> <a href="https://github.com/zellaa">Github</a> </li>
-		<li> <a href="writing.html">Writing</a> </li>
-		<!--<li> <a href="./gov/page.html">gov</a> </li>-->
-		<!--<li><a href="https://github.com/cmus/cmus/wiki/">Wiki</a></li>-->
-	</ul>
-</nav>
+  <div class="cobalt-sheet">
+    <header class="cobalt-top">
+      <a class="micro" href="index.html" aria-current="page">zella’s page</a>
 
-<h2><img src="./assets/welcome.gif"></h2>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="writing.html">Writing</a>
+        <a href="cv.pdf">CV</a>
+        <a href="https://github.com/zellaa">GitHub ↗</a>
+      </nav>
+    </header>
 
-<p>Currently a Quantitative Technologist at Qube Research and Technologies</p>
-<p>Previous full-time roles:</p>
-<ul>
-  <li>DevOps Engineer at SGX FX</li>
-</ul>
-<h3>
-	Misc
-</h3>
-    <p>Consider contacting me at my LinkedIn if you want to get in touch.</p>
-    <p>GPG Key: <a href="publickey.asc"><code>7B77AE91FD477FE9</code></a></p>
-    <ul>
-      <li>Fingerprint: <code>3D38 713B 0A1E 3D11 E66F 4232 7B77 AE91 FD47 7FE9</code></li>
-    </ul>
+    <main id="main">
+      <section class="opening introduction-first" aria-labelledby="opening-title">
+        <div class="opening-art" aria-hidden="true">
+          <img class="opening-empire" src="assets/empire.jpg" width="1200" height="813" alt="">
+          <img class="opening-voyage" src="assets/voyage.jpg" width="1400" height="942" alt="">
+          <div class="opening-fade"></div>
+        </div>
+        <div class="opening-orbit" aria-hidden="true"></div>
+        <div class="opening-copy">
+          <h1 id="opening-title">I’m <em>Zella.</em></h1>
+          <p class="role">Currently a Quantitative Technologist at Qube Research and Technologies.</p>
+          <a class="reading-link" href="#writing">Read the writing ↓</a>
+        </div>
+      </section>
 
-<h3>Personal Notes</h3>
-<p>Things I am interested in:</p>
-<ul>
-  <li>Economics</li>
-  <li>Sci-fi</li>
-  <li>Longboarding</li>
-  <li>The philosophy of science</li>
-  <li>Mathematics</li>
-  <li>Woodworking</li>
-</ul>
-	<!--<a href="linux.html">Linux Musings</a>-->
-<script src="modern.js"></script>
+      <section class="cobalt-writing" id="writing">
+        <div class="cobalt-writing-head">
+          <span class="micro">Writing</span>
+          <h2>Notes &amp;<br><em>other work</em></h2>
+          <div class="previous-roles">
+            <p>Previously:</p>
+            <ul>
+              <li>DevOps Engineer at SGX FX</li>
+            </ul>
+          </div>
+          <a href="writing.html">Everything ↗</a>
+        </div>
+
+        <div>
+          <a class="essay" href="blogs/pi.html">
+            <span class="essay-meta">
+              <span>Notes</span>
+              <span>2026</span>
+            </span>
+            <h3>
+              Building a home HTTPS gateway with a Raspberry Pi and Envoy
+              <span aria-hidden="true">↗</span>
+            </h3>
+            <p>Stable hostnames, HTTPS, and GitOps for applications on my home network.</p>
+          </a>
+
+          <a class="essay" href="blogs/dissertation.pdf">
+            <span class="essay-meta">
+              <span>MSc dissertation · PDF</span>
+              <span>2025</span>
+            </span>
+            <h3>
+              Quantifying Time Series Similarity using Singular Spectrum Analysis
+              <span aria-hidden="true">↗</span>
+            </h3>
+            <p>An industrial project with BlackRock on time series similarity.</p>
+          </a>
+
+          <a class="essay" href="blogs/images.pdf">
+            <span class="essay-meta">
+              <span>Academic · PDF</span>
+              <span>2023</span>
+            </span>
+            <h3>
+              Image Colourisation via RKHS Methods
+              <span aria-hidden="true">↗</span>
+            </h3>
+            <p>Recolourising images with reproducing-kernel Hilbert space methods.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="correspondence" aria-labelledby="contact-title">
+        <h2 class="eyebrow" id="contact-title">Correspondence</h2>
+
+        <div>
+          <p>Consider contacting me at my LinkedIn if you want to get in touch.</p>
+          <a class="key-link" href="publickey.asc">
+            GPG key: <code>7B77AE91FD477FE9</code> <span aria-hidden="true">↗</span>
+          </a>
+          <p class="fingerprint">
+            Fingerprint: <code>3D38 713B 0A1E 3D11 E66F 4232 7B77 AE91 FD47 7FE9</code>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a href="publickey.asc">GPG / 7B77AE91FD477FE9 ↗</a>
+      <a href="index.html">zella.</a>
+    </footer>
+  </div>
 </body>
 </html>

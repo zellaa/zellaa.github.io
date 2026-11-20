@@ -1,84 +1,78 @@
-<!DOCTYPE html>
-<html lang=en>
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Writing</title>
-  <meta name="viewport" content="width=device-width">
-  <link rel=icon href=data:,>
-<link rel ="stylesheet" href="style.css">
-  <style>
-  a:visited {
-    color: #691a12;
-  }
-  </style>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Blogposts, academic work, talks, and other writing by zella.">
+  <title>Writing — zella</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="cobalt.css?v=5">
 </head>
-<body>
-<nav>
-	<ul id="navbar">
-		<li><a href="index.html">Home</a></li>
-		<!--<li><a href="linux.html">Linux</a></li>-->
-		<li> <a href="cv.pdf">CV</a> </li>
-		<li> <a href="https://github.com/zellaa">Github</a> </li>
-		<li> <a href="writing.html">Writing</a> </li>
-		<!--<li><a href="https://github.com/cmus/cmus/wiki/">Wiki</a></li>-->
-	</ul>
-</nav>
-<main>
-  <header>
-	  <h2><img src="./assets/written.gif" alt="Writing"></h2>
-    <p>Split into <a href="#Blogposts">blogposts</a>, <a href="#Reports">academic</a>, <a href="#Presentations">talks</a>, and <a href="#Misc">misc</a>. Note that dates listed are dates of upload, not completion, as most of this is put up weeks/months later.</p>
-	<p>Fair warning that some of the older academic stuff isn't great - check out the image colourisation report for an idea of what I am happy with.</p>
+<body class="cobalt writing-page">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="cobalt-sheet">
+  <header class="cobalt-top">
+    <a class="micro" href="index.html">zella’s page</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="writing.html" aria-current="page">Writing</a>
+      <a href="cv.pdf">CV</a>
+      <a href="https://github.com/zellaa">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
   </header>
-  <header>
-    <h3 id="Blogposts">Blogposts</h3>
-  </header>
-  <nav>
-    <ol class="writing-list">
-      <li><a href="./blogs/pi.html">Building a home HTTPS gateway with a Raspberry Pi and Envoy</a> - Stable hostnames, HTTPS, and GitOps for applications on my home network.<time datetime="2026-11-19">nov 19, 2026</time></li>
-    </ol>
-  </nav>
-
-  <header>
-	  <h3 id="Reports">Academic</h3>
-	</header>
-  <nav>
-    <ol class="writing-list">
-		<li><a href="./blogs/dissertation.pdf">Quantifying Time Series Similarity using Singular Spectrum Analysis</a> - MSc dissertation (done as an industrial project with BlackRock) on time series similarity.<time datetime="2025-05-19">may 19, 2025</time></li>
-		<li><a href="./blogs/images.pdf">Image Colourisation via RKHS Methods</a> - MSc coursework outlining a Python program to recolourise images using reproducing-kernel hilbert space methods.<time datetime="2023-08-03">aug 03, 2023</time></li>
-		<li><a href="./blogs/computational-pricing.pdf">Computational Call Pricing</a> - MSc coursework on pricing call options using neural networks and binomial tree methods.<time datetime="2023-08-03">aug 03, 2023</time></li>
-		<li><a href="./blogs/battery-study.pdf">Battery Modelling</a> - MSc coursework outlining a project modelling the behaviour of Li-Ion batteries with an application to a real-world electric vehicle scenario.<time datetime="2023-08-03">aug 03, 2023</time></li>
-		<li><a href="./blogs/opt.pdf">Optimisation Algorithms</a> - An MSc coursework on optimisation algorithms for gradient descent, focusing on AdaLoss and AdaGrad-Norm.<time datetime="2023-04-26">apr 26, 2023</time></li>
-		<li><a href="./blogs/misconceptions.pdf">Pupil Misconceptions - Circuits and Voltage</a> - A report investigating circuit theory misconceptions in secondary school, done as part of an optional module<time datetime="2021-04-29">apr 29, 2021</time></li>
-		<li><a href="./blogs/oxfizz.pdf">Research into the barriers that disadvantaged young people face when applying to Oxbridge</a> - A report I worked on alongside an access organisation.<time datetime="2021-02-14">feb 14, 2021</time></li>
-	  <!--<li><a href="./blogs/timetable.html">timetable</a><time datetime="YYYY-MM-DD">mmm DD, YYYY</time></li>-->
-    </ol>
-  </nav>
-
-  <header>
-	  <h3 id="Presentations">Talks</h3>
-	</header>
-  <nav>
-    <ol class="writing-list">
-		<li><a href="./blogs/blackrockTalk.pdf">Similarity Analysis in Financial Time Series</a> - A presentation I gave at BlackRock outlining the work done over the course of my MSc dissertation. Intended for a non-mathematical audience (this talk builds off of the talk given to my examiners).<time datetime="2023-08-23">aug 23, 2023</time></li>
-		<li><a href="./blogs/disspres.pdf">Time Series Filtering</a> - A short presentation outlining to examiners my MSc dissertation. Intended for a mathematical audience.<time datetime="2023-05-18">may 18, 2023</time></li>
-		<li><a href="./blogs/history.pdf">Fluxions, Forces, & Fields</a> - Slides for a talk going over the mathematisation of physics in the modern period.<time datetime="2021-02-07">feb 7, 2021</time></li>
-	  <!--<li><a href="./blogs/timetable.html">timetable</a><time datetime="YYYY-MM-DD">mmm DD, YYYY</time></li>-->
-    </ol>
-  </nav>
-
-  <header>
-	  <h3 id="Misc">Misc</h3>
-	</header>
-  <nav>
-    <ol class="writing-list">
-		<li>Dotted A4 paper templates (<a href="./blogs/dark.pdf">Dark Gray</a>, <a href="./blogs/cream.pdf">Cream</a>, <a href="./blogs/white.pdf">White</a>) - Paper templates I made with LaTeX to use with Goodnotes for lecture notes. The .tex file to generate your own is <a href="./blogs/gen.tex">here</a>. <time datetime="2023-04-26">apr 26, 2023</time></li>
-		<li><a href="./blogs/handout.pdf">PAT Mathematics Handout</a> - A report I worked on alongside an access organisation.<time datetime="2021-02-14">feb 14, 2021</time></li>
-	  <!--<li><a href="./blogs/timetable.html">timetable</a><time datetime="YYYY-MM-DD">mmm DD, YYYY</time></li>-->
-    </ol>
-  </nav>
-</main>
-<script src="modern.js"></script>
+  <main id="main">
+    <header class="page-heading">
+      <div class="page-art" aria-hidden="true">
+        <img class="heading-empire" src="assets/empire.jpg" width="1200" height="813" alt="">
+        <img class="heading-voyage" src="assets/voyage.jpg" width="1400" height="942" alt="">
+        <div class="heading-fade"></div><div class="heading-orbit"></div>
+      </div>
+      <span class="eyebrow">The collection</span>
+      <h1>Writing<span>.</span></h1>
+      <nav class="category-nav" aria-label="Writing categories"><a href="#Blogposts">Blogposts</a><a href="#Reports">Academic</a><a href="#Presentations">Talks</a><a href="#Misc">Misc</a></nav>
+    </header>
+    <div class="paper writing-collection">
+      <div class="collection-note">
+        <p>Dates are dates of upload.</p>
+      </div>
+      <section class="writing-group" id="Blogposts" aria-labelledby="Blogposts-title">
+        <h2 id="Blogposts-title">Blogposts</h2>
+        <ol class="writing-list">
+          <li><time datetime="2026-11-19">nov 19, 2026</time><div class="writing-item"><h3><a href="./blogs/pi.html">Building a home HTTPS gateway with a Raspberry Pi and Envoy</a> <span class="link-format">HTML</span></h3><p>Stable hostnames, HTTPS, and GitOps for applications on my home network.</p></div></li>
+        </ol>
+      </section>
+      <section class="writing-group" id="Reports" aria-labelledby="Reports-title">
+        <h2 id="Reports-title">Academic</h2>
+        <ol class="writing-list">
+          <li><time datetime="2025-05-19">may 19, 2025</time><div class="writing-item"><h3><a href="./blogs/dissertation.pdf">Quantifying Time Series Similarity using Singular Spectrum Analysis</a> <span class="link-format">PDF</span></h3><p>MSc dissertation (done as an industrial project with BlackRock) on time series similarity.</p></div></li>
+          <li><time datetime="2023-08-03">aug 03, 2023</time><div class="writing-item"><h3><a href="./blogs/images.pdf">Image Colourisation via RKHS Methods</a> <span class="link-format">PDF</span></h3><p>MSc coursework outlining a Python program to recolourise images using reproducing-kernel hilbert space methods.</p></div></li>
+          <li><time datetime="2023-08-03">aug 03, 2023</time><div class="writing-item"><h3><a href="./blogs/computational-pricing.pdf">Computational Call Pricing</a> <span class="link-format">PDF</span></h3><p>MSc coursework on pricing call options using neural networks and binomial tree methods.</p></div></li>
+          <li><time datetime="2023-08-03">aug 03, 2023</time><div class="writing-item"><h3><a href="./blogs/battery-study.pdf">Battery Modelling</a> <span class="link-format">PDF</span></h3><p>MSc coursework outlining a project modelling the behaviour of Li-Ion batteries with an application to a real-world electric vehicle scenario.</p></div></li>
+          <li><time datetime="2023-04-26">apr 26, 2023</time><div class="writing-item"><h3><a href="./blogs/opt.pdf">Optimisation Algorithms</a> <span class="link-format">PDF</span></h3><p>An MSc coursework on optimisation algorithms for gradient descent, focusing on AdaLoss and AdaGrad-Norm.</p></div></li>
+          <li><time datetime="2021-04-29">apr 29, 2021</time><div class="writing-item"><h3><a href="./blogs/misconceptions.pdf">Pupil Misconceptions - Circuits and Voltage</a> <span class="link-format">PDF</span></h3><p>A report investigating circuit theory misconceptions in secondary school, done as part of an optional module</p></div></li>
+          <li><time datetime="2021-02-14">feb 14, 2021</time><div class="writing-item"><h3><a href="./blogs/oxfizz.pdf">Research into the barriers that disadvantaged young people face when applying to Oxbridge</a> <span class="link-format">PDF</span></h3><p>A report I worked on alongside an access organisation.</p></div></li>
+        </ol>
+      </section>
+      <section class="writing-group" id="Presentations" aria-labelledby="Presentations-title">
+        <h2 id="Presentations-title">Talks</h2>
+        <ol class="writing-list">
+          <li><time datetime="2023-08-23">aug 23, 2023</time><div class="writing-item"><h3><a href="./blogs/blackrockTalk.pdf">Similarity Analysis in Financial Time Series</a> <span class="link-format">PDF</span></h3><p>A presentation I gave at BlackRock outlining the work done over the course of my MSc dissertation. Intended for a non-mathematical audience (this talk builds off of the talk given to my examiners).</p></div></li>
+          <li><time datetime="2023-05-18">may 18, 2023</time><div class="writing-item"><h3><a href="./blogs/disspres.pdf">Time Series Filtering</a> <span class="link-format">PDF</span></h3><p>A short presentation outlining to examiners my MSc dissertation. Intended for a mathematical audience.</p></div></li>
+          <li><time datetime="2021-02-07">feb 7, 2021</time><div class="writing-item"><h3><a href="./blogs/history.pdf">Fluxions, Forces, & Fields</a> <span class="link-format">PDF</span></h3><p>Slides for a talk going over the mathematisation of physics in the modern period.</p></div></li>
+        </ol>
+      </section>
+      <section class="writing-group" id="Misc" aria-labelledby="Misc-title">
+        <h2 id="Misc-title">Misc</h2>
+        <ol class="writing-list">
+          <li><time datetime="2023-04-26">apr 26, 2023</time><div class="writing-item"><h3>Dotted A4 paper templates</h3><p>(<a href="./blogs/dark.pdf">Dark Gray</a> <span class="link-format">PDF</span>, <a href="./blogs/cream.pdf">Cream</a> <span class="link-format">PDF</span>, <a href="./blogs/white.pdf">White</a> <span class="link-format">PDF</span>) - Paper templates I made with LaTeX to use with Goodnotes for lecture notes. The .tex file to generate your own is <a href="./blogs/gen.tex">here</a> <span class="link-format">TEX</span>.</p></div></li>
+          <li><time datetime="2021-02-14">feb 14, 2021</time><div class="writing-item"><h3><a href="./blogs/handout.pdf">PAT Mathematics Handout</a> <span class="link-format">PDF</span></h3><p>A report I worked on alongside an access organisation.</p></div></li>
+        </ol>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <a href="publickey.asc">GPG / 7B77AE91FD477FE9 <span aria-hidden="true">↗</span></a>
+    <a href="index.html">zella.</a>
+  </footer>
+  </div>
 </body>
 </html>
-<!--made in bloggif, page 69 the sparkly one-->

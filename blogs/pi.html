@@ -1,27 +1,37 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Stable hostnames, HTTPS, and GitOps for home applications using a Raspberry Pi, Envoy, Route 53, and Let's Encrypt.">
-  <title>Building a home HTTPS gateway with a Raspberry Pi and Envoy</title>
+  <title>Building a home HTTPS gateway with a Raspberry Pi and Envoy — zella</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="../cobalt.css?v=4">
 </head>
-<body>
-<nav>
-  <ul id="navbar">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../cv.pdf">CV</a></li>
-    <li><a href="https://github.com/zellaa">Github</a></li>
-    <li><a href="../writing.html">Writing</a></li>
-  </ul>
-</nav>
-<main>
-  <p><a href="../writing.html#Blogposts">Back to blogposts</a></p>
-  <article class="blog-post">
-<h1>Building a home HTTPS gateway with a Raspberry Pi and Envoy</h1>
-
+<body class="cobalt article-page">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="cobalt-sheet">
+  <header class="cobalt-top">
+    <a class="micro" href="../index.html">zella’s page</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../writing.html">Writing</a>
+      <a href="../cv.pdf">CV</a>
+      <a href="https://github.com/zellaa">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <header class="article-heading">
+      <div class="page-art" aria-hidden="true">
+        <img class="heading-empire" src="../assets/empire.jpg" width="1200" height="813" alt="">
+        <img class="heading-voyage" src="../assets/voyage.jpg" width="1400" height="942" alt="">
+        <div class="heading-fade"></div><div class="heading-orbit"></div>
+      </div>
+      <a class="back-link" href="../writing.html#Blogposts">← Back to blogposts</a>
+      <p class="eyebrow">Notes / <time datetime="2026-11-19">19 November 2026</time></p>
+      <h1>Building a home HTTPS gateway with a Raspberry Pi and Envoy</h1>
+    </header>
+    <div class="paper article-paper">
+      <article class="blog-post" aria-label="Building a home HTTPS gateway with a Raspberry Pi and Envoy">
 <p>I wanted a nice way to reach applications on my home network using stable domain names and HTTPS, even when moving them between machines. Instead of remembering IP addresses and ports, my end goal was to just hit <code>app.home.sulch.dev</code> and have things "just work".</p>
 
 <p>My solution: a Raspberry Pi 5 running Envoy as a gateway, Route 53 pointing application names at the Pi, and certs from Let's Encrypt handling HTTPS. Routes for my apps live in a small repo, so after each push, everything's reconciled automatically via a GitOps flow.</p>
@@ -184,7 +194,14 @@ mac: 192.168.4.36
 <p>This was a fun little weekend project to set up, and what's nice is that it's fairly extensible as I get more things running. Right now, my biggest bottleneck is the hardware on the Pi itself, since I have to bear the memory constraints in mind when choosing what I want running 24/7.</p>
 
 <p>The primary drawback is that the Pi remains the SPOF for gateway requests, but it's not the end of the world if it goes down. The next big thing I want to set up is some sort of workload identity system, hooking into Envoy, to let my apps talk to one another.</p>
-  </article>
-</main>
+        </article>
+      <nav class="article-end" aria-label="More writing"><a href="../writing.html#Blogposts">← All blogposts</a><a href="#main">Back to top ↑</a></nav>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <a href="../publickey.asc">GPG / 7B77AE91FD477FE9 <span aria-hidden="true">↗</span></a>
+    <a href="../index.html">zella.</a>
+  </footer>
+  </div>
 </body>
 </html>
